@@ -1,0 +1,27 @@
+{
+  "name": "secur3",
+  "version": "0.0.1",
+  "description": "two factor authentication",
+  "engines": {
+    "node": "11.6.x",
+    "npm": "6.5.x"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.1",
+    "ganache-cli": "^6.12.2",
+    "truffle": "^5.5.15",
+    "truffle-plugin-verify": "^0.5.25"
+  },
+  "scripts": {
+    "ganache": "ganache-cli --networkId $npm_package_config_ganache_networkId --allowUnlimitedContractSize --gasLimit $npm_package_config_ganache_gasLimit --gasPrice $npm_package_config_ganache_gasPrice --mnemonic \"$MNEMONIC\"",
+    "start": "concurrently \"npm run ganache\" \"npm run migrate\"",
+    "migrate": "rm -rf build && truffle migrate --reset --compile-all --network development"
+  },
+  "config": {
+    "ganache": {
+      "networkId": 3431,
+      "gasPrice": 25000000000,
+      "gasLimit": 6500000
+    }
+  }
+}
